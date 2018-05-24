@@ -1,5 +1,5 @@
 # acf-openstreetmap
-WordPress plugin to create OpenStreetMap with Advanced Custom Fileds plugin
+WordPress plugin to create OpenStreetMap with Advanced Custom Fields plugin
 
 ## Install
 First, ensure you have the Advanced Custom Fields (ACF) WordPress plugin installed and activated on your WordPress running site.
