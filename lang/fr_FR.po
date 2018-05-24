@@ -1,0 +1,56 @@
+# Copyright (C) 2014
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenStreetMap plugin for Advanced Custom Fields\n"
+"POT-Creation-Date: 2018-05-23 18:08+0200\n"
+"PO-Revision-Date: 2018-05-23 18:11+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-WPHeader: acf-openstreetmap.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Last-Translator: \n"
+"Language: fr_FR\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "Zoom"
+msgstr "Zoom"
+
+msgid "Map zoom level"
+msgstr "Niveau de zoom de la carte"
+
+msgid "Map height"
+msgstr "Hauteur de la carte"
+
+msgid "Height size of the map in pixels (px)"
+msgstr "Hauteur de la carte en pixel (px)"
+
+msgid "Minimum zoom level"
+msgstr "Zoom minimum"
+
+msgid "Minimum possible zoom level (from 0 to 20)"
+msgstr "Niveau possible de zoom minimum (entre 0 et 20)"
+
+msgid "Maximum zoom level"
+msgstr "Zoom maximum"
+
+msgid "Maximum possible zoom level (from 0 to 20)"
+msgstr "Niveau possible de zoom maximum (entre 0 et 20)"
+
+msgid "Zoom level"
+msgstr "Zoom"
+
+msgid "Default zoom level on map opening (from 0 to 20)"
+msgstr "Niveau de zoom par défaut à l'ouverture de la carte (entre 0 et 20)"
+
+msgid "Tiles"
+msgstr "Fond de carte"
+
+msgid "Map tiles type"
+msgstr "Fond de carte utilisé pour la carte"
