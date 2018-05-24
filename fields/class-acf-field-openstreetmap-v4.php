@@ -197,6 +197,29 @@ class acf_field_openstreetmap extends acf_field {
 		wp_register_style('acf-openstreetmap-css', "{$url}assets/css/input.css", array('acf-input'), $version);
 		wp_enqueue_style('acf-openstreetmap-css');
 	}
+	
+	function format_value_for_api( $value, $post_id, $field ) {
+		$this->input_admin_enqueue_scripts();
+		$lat = $field['value'] ? $field['value']['center_lat'] : $field['center_lat'];
+		$lng = $field['value'] ? $field['value']['center_lng'] : $field['center_lng'];
+		$tiles = $this->settings['layers'][$field['tiles']];
+		$value = '
+		<div id="leaflet-'.$field['key'].'" style="height: '.$field['height'].'px"></div>
+		<script>
+			window.onload = function() {
+				L.Icon.Default.imagePath = "'.$this->settings['url'].'assets/images/";
+				var acfLeafletMap = L.map( "leaflet-'.$field['key'].'" ).setView(['.$lat.','.$lng.'],'.$field['zoom'].');
+				L.tileLayer( "'.$tiles['url'].'", {
+					maxZoom: '.$field['max_zoom'].',
+					minZoom: '.$field['min_zoom'].',
+					attribution: \''.$tiles['attribution'].'\'
+				}).addTo(acfLeafletMap);
+				var marker = L.marker(['.$lat.','.$lng.']).addTo(acfLeafletMap);
+			}
+		</script>';
+		
+		return $value;
+	}
 }
 
 new acf_field_openstreetmap( $this->settings );
