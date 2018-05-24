@@ -199,7 +199,11 @@ class acf_field_openstreetmap extends acf_field {
 	}
 	
 	function format_value_for_api( $value, $post_id, $field ) {
-		$this->input_admin_enqueue_scripts();
+		
+		// require the leaflet JS and CSS
+		wp_enqueue_style( 'acf-leaflet-css', plugin_dir_url( __FILE__ ).'../assets/css/leaflet.css' );
+		wp_enqueue_script( 'acf-leaflet-js', plugin_dir_url( __FILE__ ).'../assets/js/leaflet.js' );
+		
 		$lat = $field['value'] ? $field['value']['center_lat'] : $field['center_lat'];
 		$lng = $field['value'] ? $field['value']['center_lng'] : $field['center_lng'];
 		$tiles = $this->settings['layers'][$field['tiles']];
