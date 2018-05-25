@@ -24,5 +24,5 @@ When choosing "OpenStreetMap" field type in ACF dashboard, you can define :
 On a content management screen, if a "OpenStreetMap" type field is available, a map is displayed. The user can click on the map to change default position defined previously. This position is saved.
 In your WordPress theme templates, you can use this ACF field as usual with the_field() fonction, it displays the map as intended.
 
-##TODO
+## TODO
 Geocoding (free as in free speech)
