@@ -26,9 +26,6 @@ class acf_field_openstreetmap extends acf_field {
 		parent::__construct();
 		
 		$this->settings = $settings;
-		
-		wp_enqueue_style( 'acf-leaflet', $this->settings['url'].'assets/css/leaflet.css' );
-		wp_enqueue_script( 'acf-leaflet', $this->settings['url'].'assets/js/leaflet.js' );
 	}
 	
 	function create_options( $field ) {
@@ -219,21 +216,19 @@ class acf_field_openstreetmap extends acf_field {
 	}
 	
 	function input_admin_enqueue_scripts() {
-		// vars
-		$url = $this->settings['url'];
-		$version = $this->settings['version'];
+		// register & include CSS
+		wp_enqueue_style( 'acf-leaflet', $this->settings['url'].'assets/css/leaflet.css' );
+		wp_enqueue_style( 'acf-openstreetmap', $this->settings['url'].'assets/css/input.css' );
 		
 		// register & include JS
-		wp_register_script('acf-openstreetmap-js', "{$url}assets/js/input.js", array('acf-input'), $version);
-		wp_enqueue_script('acf-openstreetmap-js');
-		
-		// register & include CSS
-		wp_register_style('acf-openstreetmap-css', "{$url}assets/css/input.css", array('acf-input'), $version);
-		wp_enqueue_style('acf-openstreetmap-css');
+		wp_enqueue_script( 'acf-leaflet', $this->settings['url'].'assets/js/leaflet.js' );
+		wp_enqueue_script('acf-openstreetmap', $this->settings['url'].'assets/js/input.js' );
 	}
 	
 	function format_value_for_api( $value, $post_id, $field ) {
 		if( $field['front_display'] == 'map' ) {
+			wp_enqueue_style( 'acf-leaflet', $this->settings['url'].'assets/css/leaflet.css' );
+			wp_enqueue_script( 'acf-leaflet', $this->settings['url'].'assets/js/leaflet.js' );
 			
 			$id = 'leaflet-'.$field['key'].'-'.$post_id;
 			$lat = $field['value'] ? $field['value']['center_lat'] : $field['center_lat'];
