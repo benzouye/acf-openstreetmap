@@ -6,7 +6,7 @@ First, ensure you have the Advanced Custom Fields (ACF) WordPress plugin install
 Then :
 - Download ZIP file from GitHub repository.
 - Extract files into your WordPress /wp-content/plugins/ directory
-- In the WordPress extensions dashboard, activite this plugin
+- In the WordPress extensions dashboard, activate this plugin
 - From now, when creating a new custom field with ACF plugin you'll have an "OpenStreetMap" type choice in "Content" group
 
 ## Use OpenStreetMap field type
