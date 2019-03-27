@@ -25,6 +25,7 @@ class acf_field_openstreetmap extends acf_field {
 		$this->settings = $settings;
 		
     	parent::__construct();
+			add_filter('acf/format_value', array($this, 'format_value_for_api'), 10, 3);
 	}
 	
 	function render_field_settings( $field ) {
@@ -129,6 +130,34 @@ class acf_field_openstreetmap extends acf_field {
 		// register & include CSS
 		wp_register_style('acf-openstreetmap-css', "{$url}assets/css/input.css", array('acf-input'), $version);
 		wp_enqueue_style('acf-openstreetmap-css');
+	}
+
+	function format_value_for_api( $value, $post_id, $field ) {
+		if( $field['type']=='openstreetmap' ) {
+			wp_enqueue_style( 'acf-leaflet', $this->settings['url'].'assets/css/leaflet.css' );
+			wp_enqueue_script( 'acf-leaflet', $this->settings['url'].'assets/js/leaflet.js' );
+
+			$id = 'leaflet-'.$field['key'].'-'.$post_id;
+			$lat = $field['value'] ? $field['value']['center_lat'] : $field['center_lat'];
+			$lng = $field['value'] ? $field['value']['center_lng'] : $field['center_lng'];
+			$tiles = $this->settings['layers'][$field['tiles']];
+			$value = '
+			<div id="'.$id.'" style="height: '.$field['height'].'px"></div>
+			<script>
+				window.addEventListener( "load", function() {
+					L.Icon.Default.imagePath = "'.$this->settings['url'].'assets/images/";
+					var acfLeafletMap'.$post_id.' = L.map( "'.$id.'" ).setView(['.$lat.','.$lng.'],'.$field['zoom'].');
+					L.tileLayer( "'.$tiles['url'].'", {
+						maxZoom: '.$field['max_zoom'].',
+						minZoom: '.$field['min_zoom'].',
+						attribution: \''.$tiles['attribution'].'\'
+					}).addTo(acfLeafletMap'.$post_id.');
+					var marker = L.marker(['.$lat.','.$lng.']).addTo(acfLeafletMap'.$post_id.');
+				});
+			</script>';
+		}
+
+		return $value;
 	}
 }
 
