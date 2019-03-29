@@ -106,8 +106,8 @@ class acf_field_openstreetmap extends acf_field {
 						}
 					});
 					var marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(acfLeafletMap);
-					$("#acf-openstreetmap-lat").val( e.latlng.lat );
-					$("#acf-openstreetmap-lng").val( e.latlng.lng );
+					jQuery("#acf-openstreetmap-lat").val( e.latlng.lat );
+					jQuery("#acf-openstreetmap-lng").val( e.latlng.lng );
 				});
 			};</script>
 		</div>
