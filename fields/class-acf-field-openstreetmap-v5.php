@@ -133,13 +133,13 @@ class acf_field_openstreetmap extends acf_field {
 	}
 
 	function format_value_for_api( $value, $post_id, $field ) {
-		if( $field['type']=='openstreetmap' ) {
+		if( $field['type']=='openstreetmap' && $value && isset($value['center_lat']) && $value['center_lat'] && isset($value['center_lng']) && $value['center_lng']) {
 			wp_enqueue_style( 'acf-leaflet', $this->settings['url'].'assets/css/leaflet.css' );
 			wp_enqueue_script( 'acf-leaflet', $this->settings['url'].'assets/js/leaflet.js' );
 
 			$id = 'leaflet-'.$field['key'].'-'.$post_id;
-			$lat = $field['value'] ? $field['value']['center_lat'] : $field['center_lat'];
-			$lng = $field['value'] ? $field['value']['center_lng'] : $field['center_lng'];
+			$lat = $value['center_lat'];
+			$lng = $value['center_lng'];
 			$tiles = $this->settings['layers'][$field['tiles']];
 			$value = '
 			<div id="'.$id.'" style="height: '.$field['height'].'px"></div>
